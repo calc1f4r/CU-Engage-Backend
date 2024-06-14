@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const ClubSchema = new mongoose.Schema(
+export const Club = new mongoose.Schema(
   {
     clubName: { type: String, required: true, index: true },
     clubDescription: { type: String, required: true },
@@ -25,7 +25,7 @@ export const ClubSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const ClubModel = mongoose.model("Club", ClubSchema);
+export const ClubModel = mongoose.model("Club", Club);
 
 export const createClub = (values: Record<string, any>) => {
   return new ClubModel(values).save().then((club) => club.toObject());

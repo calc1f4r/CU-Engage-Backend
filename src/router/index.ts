@@ -5,6 +5,7 @@ import community from "./community";
 import society from "./society";
 import club from "./club";
 import joinRequest from "./joinRequest";
+import event from "./event";
 const router = express.Router();
 export default (): express.Router => {
   authentication(router);
@@ -13,5 +14,6 @@ export default (): express.Router => {
   society(router);
   club(router);
   joinRequest(router);
+  event(router);
   return router;
 };

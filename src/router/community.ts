@@ -10,6 +10,7 @@ import {
   addCommunityAdmin,
   removeCommunityAdmin,
 } from "../controllers/community";
+
 import { upload } from "../middlewares/multer.middleware";
 export default (router: express.Router) => {
   router.post(

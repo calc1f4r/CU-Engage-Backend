@@ -7,7 +7,6 @@ import { returnResetToken } from "../helpers/index";
 import { findUserByResetToken } from "../models/user.model";
 import { sendPasswordResetEmail } from "../utils/sendEmail";
 import { asyncHandler } from "../utils/asyncHandler";
-
 export const register = asyncHandler(
   async (req: express.Request, res: express.Response) => {
     try {

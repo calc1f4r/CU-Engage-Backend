@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-export const SocietySchema = new mongoose.Schema(
+export const Society = new mongoose.Schema(
   {
     societyName: { type: String, required: true, index: true },
     societyDescription: { type: String, required: true },
@@ -24,7 +24,7 @@ export const SocietySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const SocietyModel = mongoose.model("Society", SocietySchema);
+export const SocietyModel = mongoose.model("Society", Society);
 
 export const createSociety = (values: Record<string, any>) => {
   return new SocietyModel(values).save().then((society) => society.toObject());

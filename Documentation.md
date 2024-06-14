@@ -869,3 +869,66 @@ No parameters are required for this endpoint.
 | Name     | Type   | Required | Description                                                              |
 | -------- | ------ | -------- | ------------------------------------------------------------------------ |
 | `action` | String | Yes      | The action to be taken on the join request, either "approve" or "reject" |
+
+### Event creation
+
+## POST api/v1/event/:groupType/:groupId/
+
+Creates a new event.
+
+### Parameters
+
+- `groupType`: The type of the group. This can be "club", "society", or "community".
+- `groupId`: The ID of the group.
+
+### Request Body
+
+- `title`: The title of the event.
+- `description`: The description of the event.
+- `date`: The date of the event.
+- `location`: The location of the event.
+- `eventTags`: The tags associated with the event.
+- `eventImage`: An image for the event. This should be a file.
+
+### Responses
+
+- `201 Created`: The event was successfully created. The response body contains the created event.
+- `400 Bad Request`: The request was invalid.
+- `500 Internal Server Error`: Event creation failed.
+
+## PATCH api/v1/event/:eventId/
+
+Updates an event.
+
+### Parameters
+
+- `eventId`: The ID of the event.
+
+### Request Body
+
+- `title`: The title of the event.
+- `description`: The description of the event.
+- `date`: The date of the event.
+- `location`: The location of the event.
+- `eventTags`: The tags associated with the event.
+- `eventImage`: An image for the event. This should be a file.
+
+### Responses
+
+- `201 Created`: The event was successfully updated. The response body contains the updated event.
+- `400 Bad Request`: The request was invalid.
+- `500 Internal Server Error`: Event updation failed.
+
+## GET api/v1/event/:groupType/:groupId/
+
+Gets all events for a group.
+
+### Parameters
+
+- `groupType`: The type of the group. This can be "club", "society", or "community".
+- `groupId`: The ID of the group.
+
+### Responses
+
+- `200 OK`: The request was successful. The response body contains the events.
+- `500 Internal Server Error`: Failed to fetch events.

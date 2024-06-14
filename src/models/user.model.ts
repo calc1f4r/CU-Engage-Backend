@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const UserSchema = new mongoose.Schema(
+export const User = new mongoose.Schema(
   {
     firstName: { type: String, trim: true, maxlength: 100 },
     lastName: { type: String, trim: true, maxlength: 100 },
@@ -51,12 +51,12 @@ export const UserSchema = new mongoose.Schema(
 );
 
 // Compound index
-UserSchema.index({
+User.index({
   "authentication.sessionToken": 1,
   "authentication.passwordResetToken": 1,
 });
 
-export const UserModel = mongoose.model("User", UserSchema);
+export const UserModel = mongoose.model("User", User);
 
 export const getUsers = UserModel.find();
 

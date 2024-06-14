@@ -51,6 +51,7 @@ export const registerCommunity = async (
     }
 
     user.CommunityCreated.push(newCommunity._id);
+    user.CommunityJoined.push(newCommunity._id);
     await user.save();
 
     return res.status(201).json({ Message: "Community Registered" });
@@ -109,7 +110,7 @@ export const updateCommunityDetails = async (
       existingCommunity.length &&
       existingCommunity[0]._id.toString() !== id
     ) {
-      return res.status(400).send({ error: "Community Name  already exists" });
+      return res.status(400).send({ error: "Community Name already exists" });
     }
 
     const communityLogoLocalPath = (req.files as any)?.communityLogo?.[0].path;

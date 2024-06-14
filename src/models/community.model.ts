@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const CommunitySchema = new mongoose.Schema(
+export const Community = new mongoose.Schema(
   {
     communityName: { type: String, required: true, index: true },
     communityDescription: { type: String, required: true },
@@ -25,7 +25,7 @@ export const CommunitySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const CommunityModel = mongoose.model("Community", CommunitySchema);
+export const CommunityModel = mongoose.model("Community", Community);
 
 export const getCommunity = (communityId: string) =>
   CommunityModel.findById(communityId);

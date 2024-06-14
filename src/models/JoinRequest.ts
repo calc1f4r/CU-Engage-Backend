@@ -1,7 +1,7 @@
 import app from "app";
 import mongoose from "mongoose";
 
-export const joinRequestSchema = new mongoose.Schema(
+export const joinRequest = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -27,10 +27,7 @@ export const joinRequestSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const JoinRequestModel = mongoose.model(
-  "JoinRequest",
-  joinRequestSchema
-);
+export const JoinRequestModel = mongoose.model("JoinRequest", joinRequest);
 
 export const getRequestByid = (requestId: string) => {
   return JoinRequestModel.findById(requestId);

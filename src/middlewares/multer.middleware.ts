@@ -12,4 +12,16 @@ const storage = multer.diskStorage({
   },
 });
 
-export const upload = multer({ storage });
+const fileFilter = (
+  req: any,
+  file: { originalname: string },
+  cb: (arg0: Error, arg1: boolean) => void
+) => {
+  // You can add your own validation logic here
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+    return cb(new Error("Only image files are allowed!"), false);
+  }
+  cb(null, true);
+};
+
+export const upload = multer({ storage, fileFilter });

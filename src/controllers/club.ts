@@ -7,8 +7,6 @@ import {
 } from "../models/club.model";
 import mongoose from "mongoose";
 import { getUserById } from "../models/user.model";
-import club from "router/club";
-
 import { uploadOnCloudinary } from "../utils/cloudinary";
 export const registerClub = async (
   req: express.Request,
@@ -51,6 +49,7 @@ export const registerClub = async (
     }
 
     user.ClubCreated.push(newClub._id);
+    user.ClubJoined.push(newClub._id);
     await user.save();
 
     return res.status(201).json({ Message: "Club Registered" });
@@ -110,10 +109,13 @@ export const updateClubDetails = async (
     if (existingClub.length && existingClub[0]._id.toString() !== id) {
       return res.status(400).send({ error: "Club Name  already exists" });
     }
-
+    const clubLogoLocalPath = (req.files as any)?.clubLogo?.[0].path;
+    if (clubLogoLocalPath) {
+      const clubLogo = await uploadOnCloudinary(clubLogoLocalPath);
+      club.clubLogo = clubLogo.secure_url;
+    }
     club.clubName = clubName;
     club.clubDescription = clubDescription;
-    club.clubLogo = clubLogo;
     club.clubTags = clubTags;
     await club.save();
     return res.status(200).json({ Message: "Club Updated" });

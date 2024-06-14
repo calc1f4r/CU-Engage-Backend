@@ -52,6 +52,7 @@ export const registerSociety = async (
     }
 
     user.SocietyCreated.push(newSociety._id);
+    user.SocietyJoined.push(newSociety._id);
     await user.save();
 
     return res.status(201).json({ Message: "Society Registered" });
